@@ -101,7 +101,7 @@ export const projects = [
       { name: 'Flyback diode', qty: 1 },
     ],
     blurb: 'An Arduino switching a DC motor through a transistor, with a flyback diode catching the voltage kick when the motor turns off.',
-    repo: GH, // [PLACEHOLDER] replace with this project's repo URL
+    repo: `${GH}/DC-Motor-Switching-Circuit`,
     caseStudy: {
       problem: '[PLACEHOLDER] Why a microcontroller pin cannot drive a motor directly.',
       approach: '[PLACEHOLDER] Which transistor and diode you used, base resistor value, and how you tested it.',
