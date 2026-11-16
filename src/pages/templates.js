@@ -7,6 +7,7 @@ const BASE = process.env.BASE || '/';
 const SITE_URL = (process.env.SITE_URL || '').replace(/\/$/, '');
 export const href = p => BASE + p.replace(/^\//, '');
 const abs = p => (SITE_URL ? SITE_URL + href(p) : href(p));
+const gmail = () => `https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=${encodeURIComponent(site.email)}`;
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 const NAV = [
@@ -70,7 +71,7 @@ function footer() {
     <ul class="foot-links">
       <li><a href="${site.github}" rel="me noopener" target="_blank">GitHub</a></li>
       <li><a href="${site.linkedin}" rel="me noopener" target="_blank">LinkedIn</a></li>
-      <li><a href="mailto:${site.email}">Email</a></li>
+      <li><a href="${gmail()}" target="_blank" rel="noopener">Email</a></li>
       <li><a href="${href('cv.pdf')}" download>CV</a></li>
     </ul>
     <p class="foot-note">© ${new Date().getFullYear()} ${site.name}</p>
@@ -249,7 +250,8 @@ export function homePage(posts) {
     <div><p class="kicker px">05 · Contact</p><h2 id="contact-h">Player 2, press start.</h2>
     <p>Internships, projects, or a part you think I should break next. Send it over.</p></div>
     <ul class="contact-links">
-      <li><a class="btn btn-red" href="mailto:${site.email}">Email me</a></li>
+      <li><a class="btn btn-red" href="${gmail()}" target="_blank" rel="noopener">Email me</a></li>
+      <li><button class="btn" type="button" data-copy="${site.email}">Copy email</button></li>
       <li><a class="btn" href="${site.github}" rel="me noopener" target="_blank">GitHub</a></li>
       <li><a class="btn" href="${site.linkedin}" rel="me noopener" target="_blank">LinkedIn</a></li>
       <li><a class="btn" href="${href('cv.pdf')}" download>Download CV</a></li>

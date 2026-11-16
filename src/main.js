@@ -31,3 +31,18 @@ if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: re
 } else reveals.forEach(el => el.classList.add('in', 'done'));
 
 document.addEventListener('visibilitychange', () => document.body.classList.toggle('paused', document.hidden));
+
+// "Copy email" buttons: copy the address and confirm on the button itself
+document.querySelectorAll('[data-copy]').forEach(btn => {
+  const label = btn.textContent;
+  btn.addEventListener('click', async () => {
+    const text = btn.dataset.copy;
+    let ok = false;
+    try { await navigator.clipboard.writeText(text); ok = true; } catch {
+      const t = document.createElement('textarea'); t.value = text; document.body.append(t); t.select();
+      try { ok = document.execCommand('copy'); } catch {} t.remove();
+    }
+    btn.textContent = ok ? 'Copied!' : text;
+    setTimeout(() => { btn.textContent = label; }, 2200);
+  });
+});
