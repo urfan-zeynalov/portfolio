@@ -2,7 +2,7 @@
  
 Hi, I'm Urfan (13). I study Electrical and Electronics Engineering and I'm teaching myself embedded systems and robotics by building things. This repo is my portfolio.
  
-▶ **Play it:** https://urfan-zeynalov.github.io/REPO-NAME/
+▶ **Play it:** https://urfan-zeynalov.github.io/portfolio/
  
 I didn't want just another list of projects, so I turned my portfolio into a made-up retro game console. You turn it on, choose one of my projects on the select screen and play a short game about how it works. To win the round, you have to use the same idea the hardware relies on.
  
