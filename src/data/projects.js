@@ -179,10 +179,10 @@ void loop() {
     caseStudy: null,
   },
   {
-    slug: 'bldc-driver-pcb',
-    name: 'BLDC Driver PCB',
+    slug: 'autonomous-mapping-rover',
+    name: 'Autonomous Mapping Rover',
     short: '???',
-    class: 'Electronics',
+    class: 'Robotics',
     status: 'locked',
     game: null,
     portrait: null,

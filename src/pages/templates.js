@@ -280,7 +280,7 @@ export function aboutPage() {
       <li><span class="px">2027</span><strong>Politecnico di Torino</strong><span>Dual degree · Italy</span></li>
     </ol>
     <h2>What I'm working toward</h2>
-    <p>Embedded systems that move things: motors, joints and robots that balance themselves. The next skills on my list are KiCad, motor control, RTOS, ROS, sensor fusion and embedded Linux. The two locked cartridges on the console, a self-balancing bot and a BLDC driver PCB, are where those come together.</p>
+    <p>Embedded systems that move things: motors, joints and robots that balance themselves. The next skills on my list are KiCad, motor control, RTOS, ROS, sensor fusion and embedded Linux. The two locked cartridges on the console, a self-balancing bot and an autonomous mapping rover, are where those come together.</p>
     <p>Right now I'm looking for internships and research lab places in embedded systems and robotics, and for people who want to build hardware together. If that's you, <a href="${href('')}#contact">get in touch</a>.</p>
     <p class="hero-cta"><a class="btn btn-red" href="${href('cv.pdf')}" download>Download CV</a><a class="btn" href="${href('')}#contact">Contact</a></p>
   </div>
