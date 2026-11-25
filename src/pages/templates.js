@@ -273,7 +273,7 @@ export function aboutPage() {
     <h2>Who I am</h2>
     <p>I study Electrical and Electronic Engineering at ADA University in Azerbaijan. In 2027 I join Politecnico di Torino on a dual degree.</p>
     <p>I'm self-taught on the hardware side. I learn a part by wiring it, flashing it and measuring it, then I write down what broke. Right now that means a robotic arm and bringing up a bare STM32 board.</p>
-    <p>[PLACEHOLDER] A line or two about you outside the bench: what got you into electronics, or what you do when you are not building.</p>
+    <p>I got here by taking things apart to see what was inside, by wanting to build robots, and through my engineering classes. Superheroes played their part too, Spider-Man most of all.</p>
     <h2>Education</h2>
     <ol class="timeline">
       <li><span class="px">Now</span><strong>ADA University</strong><span>Electrical and Electronic Engineering · Azerbaijan</span></li>
@@ -281,7 +281,7 @@ export function aboutPage() {
     </ol>
     <h2>What I'm working toward</h2>
     <p>Embedded systems that move things: motors, joints and robots that balance themselves. The next skills on my list are KiCad, motor control, RTOS, ROS, sensor fusion and embedded Linux. The two locked cartridges on the console, a self-balancing bot and a BLDC driver PCB, are where those come together.</p>
-    <p>[PLACEHOLDER] The kind of internship, lab or role you are looking for.</p>
+    <p>Right now I'm looking for internships and research lab places in embedded systems and robotics, and for people who want to build hardware together. If that's you, <a href="${href('')}#contact">get in touch</a>.</p>
     <p class="hero-cta"><a class="btn btn-red" href="${href('cv.pdf')}" download>Download CV</a><a class="btn" href="${href('')}#contact">Contact</a></p>
   </div>
 </article>`;
@@ -296,7 +296,13 @@ export function projectsIndexPage() {
   return page({ title: 'Projects · 13 SYSTEM', description: 'Embedded and robotics projects by Urfan Zeynalov: robotic arm, STM32 bring-up, PWM motor control and a motor switch circuit.', path: 'projects/', current: 'projects/', body });
 }
 
-const ph = (label, ratio = '16 / 9') => `<figure class="ph" style="aspect-ratio:${ratio}"><figcaption>[PLACEHOLDER] ${label}</figcaption></figure>`;
+const paras = v => (Array.isArray(v) ? v : [v]).map(t => `<p>${esc(t)}</p>`).join('');
+// { src: 'file.png', alt: '...', caption: '...', w, h } stored in public/assets/projects/<slug>/
+const media = (p, m) => `<figure class="cs-fig"><img src="/assets/projects/${p.slug}/${m.src}" alt="${esc(m.alt)}"${m.w ? ` width="${m.w}" height="${m.h}"` : ''} loading="lazy" decoding="async">${m.caption ? `<figcaption>${esc(m.caption)}</figcaption>` : ''}</figure>`;
+// { youtube: 'VIDEO_ID' } or { src: 'clip.mp4' }
+const video = v => v.youtube
+  ? `<div class="cs-video"><iframe src="https://www.youtube-nocookie.com/embed/${esc(v.youtube)}" title="${esc(v.title || 'Project video')}" loading="lazy" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe></div>`
+  : `<video class="cs-video" controls preload="none" src="${esc(v.src)}"></video>`;
 
 export function caseStudyPage(p) {
   const idx = projects.indexOf(p);
@@ -327,16 +333,12 @@ export function caseStudyPage(p) {
   <div class="cs-grid">
     <aside class="cs-side">${loadout}</aside>
     <div class="prose">
-      <h2>The problem</h2><p>${esc(cs.problem)}</p>
-      <h2>The approach</h2><p>${esc(cs.approach)}</p>
-      <h2>Schematic</h2>${ph('Schematic image: add it to public/assets/projects/' + p.slug + '/ and replace this block.', '4 / 3')}
-      <h2>Code</h2>
-      <pre class="code"><code>// [PLACEHOLDER] Paste the key snippet for ${esc(p.name)} here,
-// or link the file in the repo.</code></pre>
-      <h2>Photos and video</h2>
-      <div class="ph-grid">${ph('Photo of the build')}${ph('Photo or GIF of it running')}</div>
-      ${ph('Video: embed a YouTube or MP4 clip here')}
-      <h2>Next steps</h2><p>${esc(cs.next)}</p>
+      <h2>The problem</h2>${paras(cs.problem)}
+      <h2>The approach</h2>${paras(cs.approach)}
+      ${cs.schematic ? `<h2>Schematic</h2>${media(p, cs.schematic)}` : ''}
+      ${cs.code ? `<h2>Code</h2><pre class="code"><code>${esc(cs.code.trim())}</code></pre>${cs.codeNote ? `<p class="cs-note">${esc(cs.codeNote)}</p>` : ''}` : ''}
+      ${(cs.photos && cs.photos.length) || cs.video ? `<h2>${cs.video ? 'Photos and video' : 'Photos'}</h2>${cs.photos && cs.photos.length ? `<div class="media-grid">${cs.photos.map(m => media(p, m)).join('')}</div>` : ''}${cs.video ? video(cs.video) : ''}` : ''}
+      <h2>Next steps</h2>${paras(cs.next)}
     </div>
   </div>
   <nav class="cs-nav" aria-label="More projects"><a href="${href(`projects/${prev.slug}/`)}">Previous: ${esc(prev.name)}</a><a href="${href('projects/')}">All projects</a><a href="${href(`projects/${next.slug}/`)}">Next: ${esc(next.name)}</a></nav>
