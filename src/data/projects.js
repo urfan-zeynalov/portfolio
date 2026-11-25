@@ -48,6 +48,7 @@ export const projects = [
         'A NEMA 17 stepper turns the base through a TMC2209 driver. Five servos, a mix of MG996R and MG90S, drive the shoulder, elbow, wrist pitch, wrist roll and the gripper.',
         'The writing tool is a small 5-bar linkage moved by two more MG90S servos. A tool changer swaps it on in place of the gripper, so the arm makes the big moves and the linkage makes the fine strokes.',
         'An STM32F103 runs everything, and an XL4016 buck converter powers the servos.',
+        'The targets are 60 cm of reach and a 1 kg payload. The SolidWorks assembly uses gear reductions instead of bigger servos, and the structure is shaped to use as little 3D-printing filament as possible.',
         'Right now the arm is being designed in SolidWorks, and the parts are on their way.',
       ],
       next: 'Assemble the arm when the parts arrive, bring up the stepper and servos on the STM32, then build the tool changer and the handwriting tool.',
